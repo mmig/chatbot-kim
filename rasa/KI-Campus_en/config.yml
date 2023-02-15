@@ -37,3 +37,4 @@ importers:
 
 imports:
   - ./GreetBot_en
+  - ./DFKIBot_en
