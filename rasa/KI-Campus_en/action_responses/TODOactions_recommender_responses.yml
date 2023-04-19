@@ -12,91 +12,91 @@
 
 
 action_get_learning_recommendation:
-  no_recommendations_found: Leider konnte ich keinen Kurs für diese Parameter finden.
+  no_recommendations_found: Unfortunately, I couldn't find a course for these search parameters.
   # found_recommendations parameter {0}: total number (int) of found course recommendations
-  found_recommendations: "Also, ich empfehle dir folgende Kurse: "
-  found_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
+  found_recommendations: "So, I recommend the following courses: "
+  found_recommendations_single: "So, I recommend you the following course: "
   # found_course_item parameter {0}: the title of the course
   # found_course_item parameter {1}: the URL-parameter /-ID for the course
   found_course_item: "{0}"
   # found_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
-  found_recommendations_more_single: "... und einen weiteren Kurs"
+  found_recommendations_more_single: "... and another course"
   # found_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
-  found_recommendations_more_multiple: "... und {0} weitere Kurse"
-  error_401: Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).
-  error_404: Leider wurde kein Kurs für diese Parameter gefunden.
-  error_500: Es gab einen Fehler bei der Abfrage.
+  found_recommendations_more_multiple: "... and {0} further courses"
+  error_401: Unfortunately, there was an error accessing the courses. Please contact the administrator (Status 401).
+  error_404: Unfortunately, no course was found for these parameters.
+  error_500: There was an error in the query.
   # error_unknown parameter {0}: the (text) content of the error message
-  error_unknown: "Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: {0}"
+  error_unknown: "There was an error in the query, please contact the administrator. Error: {0}"
   # debug_error parameter {0}: the (HTTP) status code of the error message
   # debug_error parameter {1}: the (HTTP) headers of the error message
   # debug_error parameter {2}: the body/content of (HTTP) error message
-  debug_error: "Fehlerantwort (Status {0}):\n  Headers: {1}\n  Body: {2}'"
+  debug_error: "Errormessage (Status {0}):\n  Headers: {1}\n  Body: {2}'"
   # debug_recommendation_parameters parameter {0}: string/description for the course recommendation/filter parameters
-  debug_recommendation_parameters: "Suche Lernangebote für folgende Parameter: {0}"
+  debug_recommendation_parameters: "Search learning opportunities for the following parameters: {0}"
 
 action_additional_learning_recommendation:
-  no_more_recommendations: Leider konnte ich keine weiteren Empfehlungen zu deinen Suchparametern finden.
+  no_more_recommendations: Unfortunately, I couldn't find any further recommendations for your search parameters.
   # additional_recommendations parameter {0}: total number (int) of additional (not yet displayed) course recommendations
-  additional_recommendations: "Also, ich empfehle dir folgende Kurse: "
-  additional_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
+  additional_recommendations: "So, I recommend the following courses: "
+  additional_recommendations_single: "So, I recommend the following course: "
   # additional_course_item parameter {0}: the title of the course
   # additional_course_item parameter {1}: the URL-parameter /-ID for the course
   additional_course_item: "{0}"
   # additional_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
-  additional_recommendations_more_single: "... und einen weiteren Kurs"
+  additional_recommendations_more_single: "... and another course" 
   # additional_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
-  additional_recommendations_more_multiple: "... und {0} weitere Kurse"
+  additional_recommendations_more_multiple: "... and {0} further courses"
 
 action_ask_language:
-  confirm_and_show_change_language: Wie ich verstanden habe, möchtest du die Sprache für deine Kursempfehlungen ändern. Wähle eine der Sprachoptionen aus!
-  ask_select_language: Soll der Kurs auf Deutsch oder auf Englisch sein?
-  language_option_german: Deutsch
-  language_option_english: Englisch
-  language_option_any: Beide Sprachen
+  confirm_and_show_change_language: As I understand, you want to change the language for your course recommendations. Please select one of the language options!
+  ask_select_language: Should the course be in German or in English? 
+  language_option_german: German
+  language_option_english: English
+  language_option_any: Both languages
 
 action_ask_topic:
-  confirm_and_show_change_topic: "Du möchtest also das Thema für deine Kursempfehlungen ändern. Hier ist eine Auswahl unserer Themen:"
-  ask_select_topic: Worum soll es in deinem Wunschkurs gehen? Wähle eins der folgenden Themenfelder!
-  topic_option_introduction_ai: Einführung in die KI
-  topic_option_specialized_ai: Vertiefung einzelner Themenfelder der KI
-  topic_option_professions_and_ai: KI in Berufsfeldern
-  topic_option_society_and_ai: KI und Gesellschaft
+  confirm_and_show_change_topic: "So you want to change the topic for your course recommendations. Here is a selection of our topics:"
+  ask_select_topic: What should your desired course be about? Choose one of the following topics!
+  topic_option_introduction_ai: Introduction to AI
+  topic_option_specialized_ai: Deepening individual topics of AI
+  topic_option_professions_and_ai: AI in occupational fields
+  topic_option_society_and_ai: AI and Society
   topic_option_data_science: Data Science
-  topic_option_machine_learning: Maschinelles Lernen
-  topic_option_any: egal
+  topic_option_machine_learning: Machine Learning 
+  topic_option_any: doesn't matter
 
 action_ask_level:
-  confirm_and_show_change_level: "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
-  ask_select_level: Wie schätzt du deine Vorkenntnisse im Bereich KI ein?
-  level_option_beginner: Anfänger:in
-  level_option_advanced: Fortgeschrittene:r
-  level_option_expert: Expert:in
+  confirm_and_show_change_level: "So you want to change the level of your desired course. The courses on the AI campus have the following levels to choose from:" 
+  ask_select_level: How would you evaluate your prior knowledge of artificial intelligence? 
+  level_option_beginner:  Beginner
+  level_option_advanced: Advanced
+  level_option_expert: Expert
 
 action_ask_max_duration:
-  confirm_and_show_change_duration: Wir haben unsere Kurse nach ihrer gesamten Stundenzahl unterteilt, wähle die für dich passende Kursdauer!
-  ask_select_duration: Wie umfangreich darf der Kurs insgesamt sein?
-  duration_option_max_10h: bis zu 10 Stunden
-  duration_option_max_50h: maximal 50 Stunden
-  duration_option_any: auch über 50 Stunden
+  confirm_and_show_change_duration: We have divided our courses according to their total number of hours, choose the right course duration for you!
+  ask_select_duration: How extensive can the course be overall? 
+  duration_option_max_10h: up to 10 hours
+  duration_option_max_50h: maximum 50 hours
+  duration_option_any: over 50 hours 
 
 action_ask_certificate:
-  confirm_and_show_change_certificate: "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
-  ask_select_certificate: Welcher Nachweis ist dir wichtig?
-  certificate_option_unqualified: Teilnahmebescheinigung
-  certificate_option_qualified: Leistungsnachweis (benotet)
-  certificate_option_any: egal
+  confirm_and_show_change_certificate: "As I understood, you want to choose a new certificate that you can get in your desired course. We have two options:"
+  ask_select_certificate: Which proof is important to you?
+  certificate_option_unqualified: Certificate of attendance 
+  certificate_option_qualified: Proof of achievement (graded)
+  certificate_option_any: doesn't matter 
 
 validate_recommender_form:
   # unsupported_language_selection parameter {0}: the (unsupported) language
-  unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
+  unsupported_language_selection: "We do not offer courses in {0} on the AI campus. Surely there is something suitable for you in German or English!" 
 
 action_recommender_or_search_topics:
 # search_topics parameter {0}: the topic
-  recommender_or_search_topics_unspecified: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?
-  recommender_or_search_topics: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {0} sehen?
-  recommender_option: persönliche Kursempfehlung
-  search_topics_option: Kursangebot zum Thema {0}
-  search_topics_option_unspecified: allgemeine Themensuche
+  recommender_or_search_topics_unspecified: Okay. Would you like to receive a personal course recommendation or would you like to see our courses for general topics? 
+  recommender_or_search_topics: Okay. Would you like to receive a personal course recommendation or would you like to see our courses for the topic {0}? 
+  recommender_option: personal course recommendation
+  search_topics_option: Courses on {0}
+  search_topics_option_unspecified: general topic search 
 
 
