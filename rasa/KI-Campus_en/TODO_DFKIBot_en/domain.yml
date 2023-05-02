@@ -169,20 +169,20 @@ slots:
     - type: custom
 responses:
   utter_anything_else_v2:
-  - text: Womit kann ich dir noch behilflich sein?
-  - text: Wie kann ich dir sonst noch helfen?
+  - text: What else can I help you with? 
+  - text: How else may I help you?
   utter_ask_continue_recommender_form:
-  - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
+  - text: All right, let's finish the course search and change the subject! Is that okay?
   utter_bot_apology:
-  - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
+  - text: I'm sorry! I still have a lot to learn and will continue to improve!
   # utter_bot_apology_feedback:
-  # - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
+  # - text: I can help you with questions about the AI campus or support you in finding a suitable course! What can I do for you?  
   utter_bot_information:
-  - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
+  - text: I can help you with questions about the AI campus or support you in finding a suitable course! What can I do for you? 
   utter_restart:
-  - text: Wir starten die Konversation jetzt noch mal neu!
+  - text: We are now restarting the conversation! 
   utter_submit_recommender_form:
-  - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
+  - text: "A little moment please, I'll find suitable courses for you."
 
 session_config:
   session_expiration_time: 60  

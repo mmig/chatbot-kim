@@ -3,16 +3,42 @@ intents:
 - greet
 - goodbye
 - thank
+
+# # added by DFKI
+actions: 
+- utter_tip_formulation
+- utter_greet
+- utter_goodbye
+- utter_you_are_welcome
+- utter_have_a_nice_day
+
 responses:
-  utter_anything_else:
-  - text: Is there anything else I can help you with?
+
   utter_greet:
-  - text: Hello! What can I help you with?
-  - text: Hello! How can I help you?
+#  - text: Hey, wie kann ich dir helfen?
+#  - text: Hey, was kann ich für dich tun?
+#  # modified by DFKI
+  - text: I am KIm, your virtual assistant! I will answer your questions about the AI campus, your learning progress and course enrollments. Additionally, I'll help you find your desired course. I still have a lot to learn and your questions will help me. So feel free to ask me anything you like about the AI campus! 
+
+  # added by DFKI
+  utter_tip_formulation:
+  - text: "💡 By the way: I understand you best if you formulate your questions briefly and precisely!"
+ 
   utter_goodbye:
-  - text: Goodbye!
+#  - text: Auf Wiedersehen!
+# # modified by DFKI
+  - text: All right. I wish you a nice day! See you 👋
+  - text: All right. I wish you a nice day! See you later 👋
+  
+# # modified by DFKI: moved to greetbot
+  utter_have_a_nice_day:
+  - text: Have a nice day and see you soon 👋
+
   utter_you_are_welcome:
-  - text: You are welcome.
+  - text: You are welcome!
+  - text: It's always nice to be helpful. 
+
+
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

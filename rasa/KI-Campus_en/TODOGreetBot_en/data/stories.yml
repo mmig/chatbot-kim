@@ -1,10 +1,12 @@
 version: '3.1'
 
 stories:
-- story: User greets
+
+- story: User greets login
   steps:
-   - intent: greet
-   - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+  - action: utter_tip_formulation
 
 - story: User goodbye
   steps:

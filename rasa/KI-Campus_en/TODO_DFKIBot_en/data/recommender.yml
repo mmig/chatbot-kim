@@ -4,332 +4,294 @@ nlu:
 
   - intent: negative_feedback
     examples: |
-      - Das war nicht hilfreich
-      - Hat nicht geholfen
-      - Wirklich nich hilfreich
-      - Das war schlecht
-      - Die Empfehlungen waren schlecht
-      - Schlechte Vorschläge
-      - Hat mir nicht gefallen
-      - Das ist unhilfreich
-      - Unhilfreich
-      - Du bist schlecht
-      - Du bist dumm
-      - Schlecht
-      - Du bist schlecht
-      - Deine Vorschläge sind nutzlos
-      - Nutzlose Vorschläge
-      - Deine Vorschläge sind dumm
-      - Unhilfreich
-      - Du bist nutzlos
-      - Das ist nutzlos
-      - Das war  schlecht
+      - That was not helpful.
+      - Did not help.
+      - Really unhelpful.
+      - That was bad.
+      - The recommendations were bad.
+      - Bad suggestions.
+      - Did not like it.
+      - That is unhelpful.
+      - Unhelpful.
+      - You are bad.
+      - You are stupid.
+      - Bad.
+      - You are bad.
+      - Your suggestions are useless.
+      - Useless suggestions.
+      - Your suggestions are stupid.
+      - Unhelpful.
+      - You are useless.
+      - That is useless.
+      - That was bad.
       
   - intent: additional_learning_recommendation
     examples: |
-      - Mach mir mehr Vorschläge!
-      - Mach mir weitere Vorschläge!
-      - Kannst du mir noch mehr Kurse nennen?
-      - Kannst du mir noch mehr Empfehlungen nennen?
-      - Kannst du mir noch zusätzliche Empfehlungen nennen?      
-      - Hast du weitere Empfehlungen
-      - Hast du weitere Kurse
-      - Mehr Empfehlungen bitte
-      - Mehr Kurse
-      - Mehr Kursempfehlungen
-      - Weitere Kursempfehlungen
-      - Weitere Empfehlungen
-      - Zusätzliche Vorschläge
-      - Gib mir mehr Empfehungen
-      - Gib zusätzliche Kursempfehlungen
-      - Mach mir weitere Vorschläge
-      - Hast du zusätzliche Vorschläge?
-      - Hast du extra Empfehlungen
-      - Nenne mir mehr Kursempfehlungen
-      - kannst du mir weitere kurse empfehlen? 
+      - Give me more suggestions!
+      - Give me further recommendations!
+      - Can you name me more courses?
+      - Can you give me more recommendations?
+      - Can you give me additional recommendations?
+      - Do you have more recommendations?
+      - Do you have more courses?
+      - More recommendations please.
+      - More courses.
+      - More course recommendations.
+      - Additional course recommendations.
+      - Additional recommendations.
+      - Extra suggestions.
+      - Give me more recommendations.
+      - Make more suggestions for me.
+      - Give additional course recommendations.
+      - Do you have any additional suggestions?
+      - Do you have any extra recommendations?
+      - Name me more course recommendations.
+      - Can you recommend me more courses? 
 
   - intent: change_language_slot
     examples: |
-      - Kannst du die Sprache ändern?
-      - Kannst du die Sprache wechseln?
-      - Kannst du die Empfehlung auf [Englisch]{"entity": "language", "value": "englisch"}
-      - Kannst du die Sprache auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - Ändere die Suche auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - Nimm eine andere Sprache 
-      - Auf [Englisch]{"entity": "language", "value": "englisch"} ändern
-      - Ändere die Sprache der Kursempfehlung
-      - Suche in einer anderen Sprache
-      - Kannst du die Sprache verändern
-      - wechsele die Kursempfehlung auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - Kurssuche Sprache ändern
-      - Kurssprache ändern
-      - Ändere die Sprache vom Kurs
-      - Suche mal mit [Englisch]{"entity": "language", "value": "englisch"}
-      - Kannst du auch nach Kursen in beiden Sprachen suchen
-      - Ändere die Sprache 
-      - Wechsele die Sprache
-      - Suche nach Kursen mit anderer Sprache
-      - Ändere die Sprache für die Kurssuche
-      - Sprache ändern
-      - Andere Sprache
-      - Ändere auf beide Sprachen
-      - Suche in beiden Sprachen
-      - Kurssuche mit beiden Sprachen
-      - Neue Sprache wählen für Kursempfehlung
-      - Ich will eine neue Sprache für die Kurssuche wählen
-      - Neue Sprache aussuchen in Kursempfehlung
+      - Can you change the language?
+      - Can you switch the language?
+      - Can you change the recommendation to [English]{"entity": "language", "value": "englisch"}?
+      - Can you change the language to [German]{"entity": "language", "value": "deutsch"}?
+      - Change the search to [German]{"entity": "language", "value": "deutsch"}.
+      - Choose a different language.
+      - Change to [English]{"entity": "language", "value": "englisch"}.
+      - Change the language of the course recommendation.
+      - Search in a different language.
+      - Can you modify the language?
+      - Switch the course recommendation to [German]{"entity": "language", "value": "deutsch"}.
+      - Change course search language.
+      - Change course language.
+      - Change the language of the course.
+      - Search using [English]{"entity": "language", "value": "englisch"}.
+      - Can you search for courses in both languages?
+      - Change the language.
+      - Switch the language.
+      - Search for courses in a different language.
+      - Change the language for course search.
+      - Change language.
+      - Choose a different language.
+      - Change to both languages.
+      - Search in both languages.
+      - Course search with both languages.
+      - Select a new language for course recommendations.
+      - I want to choose a new language for course search.     
 
   - intent: change_topic_slot
     examples: |
-      - Anderes Thema bei der Kurssuche
-      - Ändere das Thema der Kurssuche
-      - Ändere das Thema der Kurssuche auf [Data Science]{"entity": "topic", "value": "Data Science"}
-      - Ändere das Thema der Empfehlung auf [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
-      - Suche Kurse mit dem Thema [KI in Berufsfeldern]{"entity": "topic", "value": "KI-Berufsfelder"}   
-      - Suche nach Kursen mit anderem Thema
-      - Ändere das Thema der Empfehlungen
-      - Kannst du mir Kurse zu weiteren Themen empfehlen
-      - Wechsele das Thema der Kursempfehlung
-      - Thema der Kurse ändern
-      - Ändere das Thema der Empfehlung
-      - Bitte Thema der Kursempfehlung ändern
-      - Kannst du für weitere Themen suche
-      - Kannst du das Thema für die Kurssuche ändern?
-      - Weitere Themen 
-      - Ich will ein neues Thema wählen
-      - Ich suche Kurse mit neuem Thema
-      - Gib mir Empfehlungen zum Thema [KI in Berufsfeldern]{"entity": "topic", "value": "KI-Berufsfelder"}   
-      - Suche Kursempfehlungen zum Thema [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
-      - Ich möchte Empfehlungen zu einem anderen Themenfeld
-      - Neues Themenfeld wählen
-      - Suche in einer neuen Themenkategorie
-      - Andere Themenkategorie
-      - Ändere das Themenfeld
+      - Change topic for course search
+      - Change topic of course search to [Data Science]{"entity": "topic", "value": "Data Science"}
+      - Change topic of recommendation to [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
+      - Search for courses with the topic [AI in professional fields]{"entity": "topic", "value": "KI-Berufsfelder"}
+      - Search for courses with a different topic
+      - Change topic of recommendations
+      - Can you recommend courses on other topics?
+      - Switch topic of course recommendations
+      - Change topic of courses
+      - Please change the topic of course recommendations
+      - Can you search for other topics?
+      - Can you change the topic for the course search?
+      - Change topic of recommendation
+      - Other topics
+      - I want to choose a new topic
+      - I am looking for courses with a new topic
+      - Give me recommendations on the topic [AI in professional fields]{"entity": "topic", "value": "KI-Berufsfelder"}
+      - Search for course recommendations on the topic [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
+      - I want recommendations on a different topic
+      - Choose a new topic
+      - Search in a new topic category
+      - Other topic category
+      - Change the topic field
 
   - intent: change_level_slot
     examples: |
-      - Suche auch für [Experten]{"entity": "level", "value": "Experte"}
-      - Ändere Vorkenntnisse
-      - Vorkenntnisse ändern 
-      - Kannst du meine Vorkenntnisse anpassen
-      - Kannst du meine Vorkenntnisse ändern
-      - Ich will Empfehlungen für alle Vorkenntnisse
-      - Gib mir auch Kurse für [Einsteiger]{"entity": "level", "value": "Einsteiger"}
-      - Gib mir Kursempfehlungen für alle Vorkenntnisse
-      - Gib mir Empfehlungen für [Experten]{"entity": "level", "value": "Experte"}
-      - Ich will Kurse für alle Level 
-      - Ändere die Schwierigkeitsstufe der Kurse
-      - Ändere den Kenntnisstand für die Kursempfehlungen
-      - Level der Kurse ändern
-      - Passe das Level der Empfehlungen an
-      - Erweitere die Vorkenntnisse für Empfehlungen
-      - Kannst du die Vorkenntnisse für die Kurse ändern
-      - Kannst du die Vorkenntnisse auf [Experten]{"entity": "level", "value": "Experte"} ändern?
-      - Wechsel das Schwierigkeitslevel der Kurse
-      - Ändere die Schwierigkeit der Kurse
-      - Passe die Schwierigkeit der Empfehlung an
-      - Vorkenntnisse anpassen
-      - Ich suche schwierigere Kurse
-      - Ich will anspruchsvollere Empfehlungen
-      - Kannst du mir anspruchsvollere Kurse empfehlen
-      - Empfehle mir anspruchsvollere Kurse
+      - Also search for [experts]{"entity": "level", "value": "Experte"}
+      - Change my prior knowledge
+      - Modify my prior knowledge
+      - Can you adjust my prior knowledge?
+      - Can you change my prior knowledge?
+      - I want recommendations for all levels of prior knowledge
+      - Also give me courses for [beginners]{"entity": "level", "value": "Anfänger"}
+      - Give me course recommendations for all levels of prior knowledge
+      - Give me recommendations for [experts]{"entity": "level", "value": "Experte"}
+      - I want courses for all levels
+      - Change the difficulty level of the courses
+      - Change the level of knowledge for the course recommendations
+      - Change the course levels
+      - Adjust the level of the recommendations
+      - Expand the prior knowledge for recommendations
+      - Can you change the prior knowledge for the courses?
+      - Can you change the prior knowledge to [expert]{"entity": "level", "value": "Experte"}?
+      - Switch the difficulty level of the courses
+      - Change the difficulty of the courses
+      - Adjust the difficulty of the recommendations
+      - Adjust prior knowledge
+      - I'm looking for more difficult courses
+      - I want more challenging recommendations
+      - Can you recommend more challenging courses for me?
+      - Recommend more challenging courses for me.
 
   - intent: change_max_duration_slot
     examples: |
-      - Suche auch nach längeren Kursen
-      - Ändere die Kursdauer
-      - Ich will eine andere Kursdauer einstellen
-      - Suche umfangreichere Kurse
-      - Erweitere die Kurssuche mit längeren Kursen
-      - Ich will doch kürzere Kurse
-      - Kannst du mir kürzere Kurse empfehlen?
-      - Ich will auch umfangreichere Kurse sehen
-      - Dauer ändern Kursempfehlung
-      - Ändere die Dauer der Kurse
-      - Passe die Kursdauer neu an
-      - Passe die Länge der Kursempfehlungen auf [fünfzig]{"entity": "max_duration", "value": "50"} h an
-      - Ich will eine neue Kursdauer einstellen
-      - Erhöhe die Kursdauer
-      - Kannst du mir weniger lange Kurse empfehlen?
-      - Kannst du mir auch kürzere Kurse nennen?
-      - Ändere die Dauer bitte auf insgesamt [zehn]{"entity": "max_duration", "value": "10"} Stunden
-      - Empfehle mir Kurse die auch länger als [50]{"entity": "max_duration", "value": "50"} h sind
-      - Ich will die Kursdauer auf [zehn]{"entity": "max_duration", "value": "10"} h ändern
-      - Kursdauer ändern
-      - Kursdauer anpassen auf 
-      - Gib mir Empfehlungen für umfangreichere Kurse
-      - ich will doch auch empfehlungen bekommen, die über [50]{"entity": "max_duration", "value": "50"} h gehen   
+      - Also search for longer courses
+      - Change the course duration
+      - I want to set a different course duration
+      - Search for more comprehensive courses
+      - Expand the course search with longer courses
+      - I actually want shorter courses
+      - Can you recommend shorter courses for me?
+      - I also want to see more comprehensive courses
+      - Change course duration recommendation
+      - Change the duration of the courses
+      - Adjust the course duration again
+      - Adjust the length of the course recommendations to [fifty]{"entity": "max_duration", "value": "50"} hours
+      - I want to set a new course duration
+      - Increase the course duration
+      - Can you recommend shorter courses for me?
+      - Can you also recommend shorter courses for me?
+      - Please change the duration to a total of [ten]{"entity": "max_duration", "value": "10"} hours
+      - Recommend courses that are longer than [50]{"entity": "max_duration", "value": "50"} hours
+      - I want to change the course duration to [ten]{"entity": "max_duration", "value": "10"} hours
+      - Change course duration
+      - Adjust course duration to
+      - Give me recommendations for more comprehensive courses
+      - I also want recommendations that exceed [50]{"entity": "max_duration", "value": "50"} hours
 
   - intent: change_certificate_slot
     examples: |
-      - Was ist mit Kursen die nur einen [Teilnahmeschein]{"entity": "certificate", "value": "Teilnahmebescheinigung"} geben?
-      - Empfehle mir auch Kurse ohne Nachweis
-      - Empfehle mir nur Kurse mit [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} 
-      - Ändere den Nachweis für die Kursempfehlung
-      - Kannst du den Nachweis ändern 
-      - Kursempfehlung Nachweis ändern
-      - Suche auch Kurse ohne [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} 
-      - Gib mir auch Empfehlungen ohne [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} 
-      - Ich brauche doch kein [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} für die Kursempfehlung
-      - Kannst du mir mehr Kurse empfehlen? Auch ohne [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - Suche mir Kurse ohne Nachweis
-      - Nachweis ändern für Kursempfehlung
-      - Suche nach Kursen mit beiden Nachweisen
-      - Ich will auch Kurse ohne [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} sehen
-      - Ich will auch Kurse sehen, die kein [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"}  geben
-      - Suche mir Kurse egal welche Nachweis
-      - Hast du mehr Kurse ohne [Zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} zur Auswahl?
-  
+      - What about courses that only provide a [paticipation]{"entity": "certificate", "value": "Teilnahmebescheinigung"}?
+      - Recommend courses to me without any proof of completion.
+      - Recommend only courses with a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}.
+      - Change the proof requirement for the course recommendations.
+      - Can you change the proof requirement?
+      - Change the proof requirement for course recommendations.
+      - Also search for courses without a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}.
+      - Give me recommendations without a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}.
+      - I don't need a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"} for the course recommendations.
+      - Can you recommend more courses? Including those without a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}?
+      - Find me courses without any proof of completion.
+      - Change the proof requirement for course recommendations.
+      - Search for courses that have both types of proof.
+      - I also want to see courses without a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}.
+      - I also want to see courses that don't offer a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}.
+      - Find me courses regardless of the proof requirement.
+      - Do you have more courses to choose from that don't require a [certificate]{"entity": "certificate", "value": "Leistungsnachweis"}?
+
   - intent: undecided
     examples: |
-      - Das kann ich nicht wissen
-      - Das kann ich nicht sagen 
-      - Ist mir egal
-      - Ist mir schnuppe
-      - Ist mir wurscht
-      - Ist mir gleichgültig
-      - Ist mir einerlei
-      - Wie du willst
-      - Wie du möchtest
-      - Wie du magst
-      - Ich weiß doch nicht
-      - Ich weiß noch nicht
-      - Ich weiß wirklich nicht
-      - Ich weiß gar nicht
-      - Ich weiß überhaupt nicht
-      - Das eine wie das andere.
-      - Darüber weiß ich nichts .
-      - Darüber weiß ich nicht Bescheid .
-      - Weiß ich noch nicht.
-      - Weiß ich wirklich nicht.
-      - Weiß ich echt nicht.
-      - Weiß ich nicht.
-      - Weiß nicht
-      - Egal
-      - Ist egal
-      - Wirklich egal
-      - keine Ahnung
+      - I cannot know that
+      - I cannot say
+      - I don't care
+      - It's all the same to me
+      - It's indifferent to me
+      - Whatever you want
+      - As you wish
+      - I don't know
+      - I still don't know
+      - I really don't know
+      - I have no idea
+      - Both are the same to me.
+      - I don't know anything about that.
+      - I don't know about that.
+      - I don't know yet.
+      - I really don't know.
+      - I truly don't know.
+      - I don't know.
+      - Don't know
+      - Doesn't matter
+      - It doesn't matter
+      - Really doesn't matter
+      - I have no clue
 
   - intent: restart
     examples: |
-      - Neustart
-      - neustarten
-      - restart
-      - renew
-      - noch mal neu anfangen
-      - noch mal neu beginnen
-      - noch mal neu starten
-      - noch mal neu
-      - starte neu!
-      - beginne neu!
-      - Bitte die Konversation neu beginnen .
-      - Bitte die Konversation neu anfangen .
-      - Bitte die Konversation neu starten .
-      - Bitte die Konversation neu machen .
-      - Konversation neu beginnen .
-      - Konversation neu anfangen .
-      - Konversation neustarten .
-      - Konversation neu machen .
+      - Restart
+      - Restarting
+      - Renew
+      - Start over
+      - Begin again
+      - Start again
+      - New start
+      - Restart!
+      - Begin again!
+      - Please restart the conversation.
+      - Please start the conversation over.
+      - Please restart the conversation.
+      - Please redo the conversation.
+      - Start the conversation over.
+      - Begin the conversation again.
+      - Restart the conversation.
+      - Redo the conversation.
     
 # # Recommender_form
   - intent: start_recommender_form
     examples: |
-      - Ich will eine Kursempfehlung erhalten
-      - Ich will eine Kursempfehlung bekommen
-      - Ich will eine Kursempfehlung kriegen
-      - Ich möchte eine Kursempfehlung erhalten
-      - Ich möchte eine Kursempfehlung bekommen
-      - Ich möchte eine Kursempfehlung kriegen
-      - Kann ich eine Kursempfehlung erhalten
-      - Kann ich eine Kursempfehlung bekommen
-      - Kann ich eine Kursempfehlung kriegen
-      - Kannst du mir Kurse empfehlen ?
-      - Kannst du mir Kurse vorschlagen ?
-      - Kannst du mir Kurse suchen ?
-      - Kannst du mir einen Kurs empfehlen ?
-      - Kannst du mir einen Kurs vorschlagen ?
-      - Kannst du mir einen Kurs suchen ?
-      - Kannst du Kurse empfehlen ?
-      - Kannst du Kurse vorschlagen ?
-      - Kannst du Kurse suchen ?
-      - Kannst du einen Kurs empfehlen ?
-      - Kannst du einen Kurs vorschlagen ?
-      - Kannst du einen Kurs suchen ?
-      - Wechen Kurs kann ich wählen ?
-      - Wechen Kurs kann ich besuchen ?
-      - Wechen Kurs kann ich anschauen ?
-      - Wechen Kurs kann ich belegen ?
-      - Wechen Kurs soll ich wählen ?
-      - Wechen Kurs soll ich besuchen ?
-      - Wechen Kurs soll ich anschauen ?
-      - Wechen Kurs soll ich belegen ?
-      - Wechen Video kann ich wählen ?
-      - Wechen Video kann ich besuchen ?
-      - Wechen Video kann ich anschauen ?
-      - Wechen Video kann ich belegen ?
-      - Wechen Video soll ich wählen ?
-      - Wechen Video soll ich besuchen ?
-      - Wechen Video soll ich anschauen ?
-      - Wechen Video soll ich belegen ?
-      - Wechen Seminar kann ich wählen ?
-      - Wechen Seminar kann ich besuchen ?
-      - Wechen Seminar kann ich anschauen ?
-      - Wechen Seminar kann ich belegen ?
-      - Wechen Seminar soll ich wählen ?
-      - Wechen Seminar soll ich besuchen ?
-      - Wechen Seminar soll ich anschauen ?
-      - Wechen Seminar soll ich belegen ?
-      - Wechen Onlineseminar kann ich wählen ?
-      - Wechen Onlineseminar kann ich besuchen ?
-      - Wechen Onlineseminar kann ich anschauen ?
-      - Wechen Onlineseminar kann ich belegen ?
-      - Wechen Onlineseminar soll ich wählen ?
-      - Wechen Onlineseminar soll ich besuchen ?
-      - Wechen Onlineseminar soll ich anschauen ?
-      - Wechen Onlineseminar soll ich belegen ?
-      - Wechen Onlinekurs kann ich wählen ?
-      - Wechen Onlinekurs kann ich besuchen ?
-      - Wechen Onlinekurs kann ich anschauen ?
-      - Wechen Onlinekurs kann ich belegen ?
-      - Wechen Onlinekurs soll ich wählen ?
-      - Wechen Onlinekurs soll ich besuchen ?
-      - Wechen Onlinekurs soll ich anschauen ?
-      - Wechen Onlinekurs soll ich belegen ?
-      - Gibt es hier eine Empfehlung ?
-      - Gibt es hier eine  Beratung zu Kursen  ?
-      - Gibt es hier eine Kursberatung ?
-      - Such mir einen Kurs!
-      - Finde mir einen Kurs!
-      - Welche Kurse habt ihr im Angebot ?
-      - Welche Kurse habt ihr zur Auswahl ?
-      - Welche Kurse habt ihr im Katalog ?
-      - Welche Kurse habt ihr online ?
-      - Welche Kurse hat der KI Campus im Angebot ?
-      - Welche Kurse hat der KI Campus zur Auswahl ?
-      - Welche Kurse hat der KI Campus im Katalog ?
-      - Welche Kurse hat der KI Campus online ?
-      - starte die kurssuche
-      - starte die suche
-      - beginne die kurssuche
-      - starte kurssuche
-      - Gib mir eine Empfehlung
-      - Kannst du mir eine Empfehlung geben
-      - neue Empfehlung
-      - empfehle mir einen kurs
-      - empfehle mir was
-      - kannst du mir einen kurs suchen
-      - ich suche einen kurs
-      - empfehle mir einen kurs!
-      - dann gib mir eine empfehlung
-      - starte die kurssuche
-      - gib mir mal ne empfehlung
-      - ich möchte eine kursempfehlung haben
-      - kurssuche starten
-      - ich möchte eine empfehlung
-      - gib mir eine empfehlung
-      - ich möchte eine kursempfehlung bekommen
-      - empfehle mir einen kurs
-      - welche empfehlung kannst du mir geben      
+      - I want to receive a course recommendation.
+      - I want to get a course recommendation.
+      - I want to receive a course suggestion.
+      - I want to get a course suggestion.
+      - Can I receive a course recommendation?
+      - Can I get a course recommendation?
+      - Can you recommend courses to me?
+      - Can you suggest courses to me?
+      - Can you search for courses for me?
+      - Can you recommend a course to me?
+      - Can you suggest a course to me?
+      - Can you search for a course for me?
+      - Which course can I choose?
+      - Which course can I attend?
+      - Which course can I view?
+      - Which course should I take?
+      - Which video can I choose?
+      - Which video can I watch?
+      - Which video should I take?
+      - Which seminar can I choose?
+      - Which seminar can I attend?
+      - Which seminar can I view?
+      - Which seminar should I take?
+      - Which online seminar can I choose?
+      - Which online seminar can I attend?
+      - Which online seminar can I view?
+      - Which online seminar should I take?
+      - Which online course can I choose?
+      - Which online course can I attend?
+      - Which online course can I view?
+      - Which online course should I take?
+      - Is there a recommendation here?
+      - Is there a course consultation available here?
+      - Do you have a course recommendation service?
+      - Find me a course!
+      - What courses do you offer?
+      - What courses do you have to choose from?
+      - What courses are in your catalog?
+      - What online courses do you offer?
+      - What courses does KI Campus offer?
+      - What courses does KI Campus have to choose from?
+      - What courses are in KI Campus's catalog?
+      - What online courses does KI Campus offer?
+      - Start the course search.
+      - Start the search.
+      - Begin the course search.
+      - Start course search.
+      - Give me a recommendation.
+      - Can you give me a recommendation?
+      - New recommendation.
+      - Recommend a course to me.
+      - Recommend something to me.
+      - Can you search for a course for me?
+      - I am looking for a course.
+      - Recommend a course to me!
+      - Then give me a recommendation.
+      - Start the course search.
+      - Give me a recommendation.
+      - I want to receive a course recommendation.
+      - Start the course search.
+      - I want a recommendation.
+      - Give me a recommendation.
+      - I want to get a course recommendation.
+      - Recommend a course to me.
+      - What recommendation can you give me?  
 # #
       # - Ich suche Kurse über [ML](topic)
       # - Ich suche Kurse über [Machine Learning](topic)
@@ -358,259 +320,153 @@ nlu:
 
   - intent: inform
     examples: |
-      - gerne in [Englisch]{"entity": "language", "value": "englisch"}
-      - gerne in [Deutsch]{"entity": "language", "value": "deutsch"}
-      - gerne in [english]{"entity": "language", "value": "englisch"}
-      - gerne auf [Englisch]{"entity": "language", "value": "englisch"}
-      - gerne auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - lieber in [Englisch]{"entity": "language", "value": "englisch"}
-      - lieber in [Deutsch]{"entity": "language", "value": "deutsch"}
-      - lieber auf [Englisch]{"entity": "language", "value": "englisch"}
-      - lieber auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - ich möchte in [Englisch]{"entity": "language", "value": "englisch"}
-      - ich möchte in [Deutsch]{"entity": "language", "value": "deutsch"}
-      - ich möchte auf [Englisch]{"entity": "language", "value": "englisch"}
-      - ich möchte auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - in [Englisch]{"entity": "language", "value": "englisch"}
-      - in [Deutsch]{"entity": "language", "value": "deutsch"}
-      - auf [Englisch]{"entity": "language", "value": "englisch"}
-      - auf [Deutsch]{"entity": "language", "value": "deutsch"}
-      - Ich möchte in [EN]{"entity": "language", "value": "englisch"} .
-      - Ich möchte in [english]{"entity": "language", "value": "englisch"} .
-      - Ich möchte auf [EN]{"entity": "language", "value": "englisch"} .
-      - Ich möchte auf [english]{"entity": "language", "value": "englisch"} .
-      - Gerne in [EN]{"entity": "language", "value": "englisch"} .
-      - Gerne in [english]{"entity": "language", "value": "englisch"} .
-      - Gerne auf [EN]{"entity": "language", "value": "englisch"} .
-      - Gerne auf [english]{"entity": "language", "value": "englisch"} .
-      - Lieber in [EN]{"entity": "language", "value": "englisch"} .
-      - Lieber in [english]{"entity": "language", "value": "englisch"} .
-      - Lieber auf [EN]{"entity": "language", "value": "englisch"} .
-      - Lieber auf [english]{"entity": "language", "value": "englisch"} .
-      - in [EN]{"entity": "language", "value": "englisch"} .
-      - in [english]{"entity": "language", "value": "englisch"} .
-      - auf [EN]{"entity": "language", "value": "englisch"} .
-      - auf [english]{"entity": "language", "value": "englisch"} .
-      - Ich möchte in [DE]{"entity": "language", "value": "deutsch"} .
-      - Ich möchte in [german]{"entity": "language", "value": "deutsch"} .
-      - Ich möchte auf [DE]{"entity": "language", "value": "deutsch"} .
-      - Ich möchte auf [german]{"entity": "language", "value": "deutsch"} .
-      - Gerne in [DE]{"entity": "language", "value": "deutsch"} .
-      - Gerne in [german]{"entity": "language", "value": "deutsch"} .
-      - Gerne auf [DE]{"entity": "language", "value": "deutsch"} .
-      - Gerne auf [german]{"entity": "language", "value": "deutsch"} .
-      - Lieber in [DE]{"entity": "language", "value": "deutsch"} .
-      - Lieber in [german]{"entity": "language", "value": "deutsch"} .
-      - Lieber auf [DE]{"entity": "language", "value": "deutsch"} .
-      - Lieber auf [german]{"entity": "language", "value": "deutsch"} .
-      - in [DE]{"entity": "language", "value": "deutsch"} .
-      - in [german]{"entity": "language", "value": "deutsch"} .
-      - auf [DE]{"entity": "language", "value": "deutsch"} .
-      - auf [german]{"entity": "language", "value": "deutsch"} .
-      - [DE]{"entity": "language", "value": "deutsch"}
       - [german]{"entity": "language", "value": "deutsch"}
+      - [english]{"entity": "language", "value": "englisch"}
       - [EN]{"entity": "language", "value": "englisch"}
-      - Gerne auf [spanisch]{"entity": "language", "value": "spanisch"}
-      - Gerne auf [französisch]{"entity": "language", "value": "französisch"}
-      - [spanisch]{"entity": "language", "value": "spanisch"}
-      - [französisch]{"entity": "language", "value": "französisch"}
-      - Ich möchte auf [spanisch]{"entity": "language", "value": "spanisch"}
-      - Ich möchte auf [französisch]{"entity": "language", "value": "französisch"}
-      - in [spanisch]{"entity": "language", "value": "spanisch"}
-      - in [französisch]{"entity": "language", "value": "französisch"}
-      - auf [spanisch]{"entity": "language", "value": "spanisch"}
-      - auf [französisch]{"entity": "language", "value": "französisch"}
-
-      - ich schätze mich als [Einsteiger]{"entity": "level", "value": "Einsteiger"}
-      - ich schätze mich als [Einsteigerin]{"entity": "level", "value": "Einsteiger"}
-      - ich schätze mich als [Fortgeschritten]{"entity": "level", "value": "Fortgeschritten"}
-      - ich schätze mich als [Experte]{"entity": "level", "value": "Experte"}
-      - ich bin [Einsteiger]{"entity": "level", "value": "Einsteiger"}
-      - ich bin [Einsteigerin]{"entity": "level", "value": "Einsteiger"}
-      - ich bin [Fortgeschritten]{"entity": "level", "value": "Fortgeschritten"}
-      - ich bin [Experte]{"entity": "level", "value": "Experte"}
-      - ich schätze mich als [Anfänger]{"entity": "level", "value": "Einsteiger"}
-      - ich schätze mich als [Anfängerin]{"entity": "level", "value": "Einsteiger"}
-      - ich habe [keine Erfahrung]{"entity": "level", "value": "Einsteiger"}
-      - [keine Erfahrung]{"entity": "level", "value": "Einsteiger"}
-      - ich bin [Anfänger]{"entity": "level", "value": "Einsteiger"}
-      - ich bin [Anfängerin]{"entity": "level", "value": "Einsteiger"}
-      - ich bin [Fortgeschrittene]{"entity": "level", "value": "Fortgeschritten"}
-      - [Fortgeschrittene]{"entity": "level", "value": "Fortgeschritten"}
-      - ich schätze mich als [Fortgeschrittene]{"entity": "level", "value": "Fortgeschritten"}
-      - ich bin [Expertin]{"entity": "level", "value": "Experte"}
-      - [Expertin]{"entity": "level", "value": "Experte"}
-
-      - [Einführung in die KI]{"entity": "topic", "value": "KI-Einführung"}
-      - [Einführung KI]{"entity": "topic", "value": "KI-Einführung"}
-      - [Einstieg KI]{"entity": "topic", "value": "KI-Einführung"}
-      - [Einstieg in die KI]{"entity": "topic", "value": "KI-Einführung"}
-
-      - [Vertiefung einzelner Themenfelder der KI]{"entity": "topic", "value": "KI-Vertiefung"}
-      - [Vertiefung einzelner Themenfelder]{"entity": "topic", "value": "KI-Vertiefung"}
-      - [Vertiefung Themenfelder]{"entity": "topic", "value": "KI-Vertiefung"}
-      - [Vertiefung KI]{"entity": "topic", "value": "KI-Vertiefung"}
-
-      - [KI in Berufsfeldern]{"entity": "topic", "value": "KI-Berufsfelder"}
-      - [KI Berufsfelder]{"entity": "topic", "value": "KI-Berufsfelder"}
-      - [KI Beruf]{"entity": "topic", "value": "KI-Berufsfelder"}
-
-      - [KI und Gesellschaft]{"entity": "topic", "value": "KI-Gesellschaft"}
-      - [KI Gesellschaft]{"entity": "topic", "value": "KI-Gesellschaft"}
-      
-      - [Data Science]{"entity": "topic", "value": "Data Science"}
-
-      - [Maschinelles Lernen]{"entity": "topic", "value": "Maschinelles Lernen"}
+      - [DE]{"entity": "language", "value": "deutsch"}
+      - [beginner]{"entity": "level", "value": "Einsteiger"}
+      - [advanced]{"entity": "level", "value": "Fortgeschritten"}
+      - [expert]{"entity": "level", "value": "Experte"}
+      - [novice]{"entity": "level", "value": "Einsteiger"}
+      - [no experience]{"entity": "level", "value": "Einsteiger"}
+      - [Introduction to AI]{"entity": "topic", "value": "KI-Einführung"}
+      - [AI Introduction]{"entity": "topic", "value": "KI-Einführung"}
+      - [Getting Started with AI]{"entity": "topic", "value": "KI-Einführung"}
+      - [Getting Started in AI]{"entity": "topic", "value": "KI-Einführung"}
+      - [Deepening of individual topics in AI]{"entity": "topic", "value": "KI-Vertiefung"}
+      - [Deepening of individual topics]{"entity": "topic", "value": "KI-Vertiefung"}
+      - [Deepening of topics]{"entity": "topic", "value": "KI-Vertiefung"}
+      - [AI deepening]{"entity": "topic", "value": "KI-Vertiefung"}
+      - [AI in professional fields]{"entity": "topic", "value": "KI-Berufsfelder"}
+      - [AI professional fields]{"entity": "topic", "value": "KI-Berufsfelder"}
+      - [AI profession]{"entity": "topic", "value": "KI-Berufsfelder"}
+      - [AI and society]{"entity": "topic", "value": "KI-Gesellschaft"}
+      - [AI society]{"entity": "topic", "value": "KI-Gesellschaft"}
+      - [data science]{"entity": "topic", "value": "Data Science"}
       - [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
       - [machine learning]{"entity": "topic", "value": "Maschinelles Lernen"}
-
-      - [Einführung R]{"entity": "topic", "value": "Statistik"}
-      - [Statistik]{"entity": "topic", "value": "Statistik"}
-      - [statistische Methoden]{"entity": "topic", "value": "Statistik"}
-      - [R Programmierung]{"entity": "topic", "value": "Statistik"}
-
-      - [zehn]{"entity": "max_duration", "value": "10"} h
-      - [zehn]{"entity": "max_duration", "value": "10"} Stunden
+      - [ten]{"entity": "max_duration", "value": "10"} hours
       - [10]{"entity": "max_duration", "value": "10"}  h
-      - [10]{"entity": "max_duration", "value": "10"} Stunden
-      - [fünfzig]{"entity": "max_duration", "value": "50"} h
-      - [fünfzig]{"entity": "max_duration", "value": "50"} Stunden
-      - [50]{"entity": "max_duration", "value": "50"} h
-      - [50]{"entity": "max_duration", "value": "50"} Stunden
-      - [über fünfzig]{"entity": "max_duration", "value": "51"} h
-      - [über fünfzig]{"entity": "max_duration", "value": "51"} Stunden
-      - [über 50]{"entity": "max_duration", "value": "51"} h
-      - [über 50]{"entity": "max_duration", "value": "51"} Stunden
-      - [mehr als 50]{"entity": "max_duration", "value": "51"} h
-      - [mehr als 50]{"entity": "max_duration", "value": "51"} Stunden
-      - [mehr als fünfzig]{"entity": "max_duration", "value": "51"}
+      - [fifty]{"entity": "max_duration", "value": "50"} hours
+      - [50]{"entity": "max_duration", "value": "50"} hours
+      - [more than fifty]{"entity": "max_duration", "value": "51"} h
+      - [more than 50]{"entity": "max_duration", "value": "51"} hours
+      - [over 50]{"entity": "max_duration", "value": "51"} h
+      - [over fifty]{"entity": "max_duration", "value": "51"} hours
       - [51]{"entity": "max_duration", "value": "51"} h
       - [51]{"entity": "max_duration", "value": "51"} Stunden 
-
-      - [Leistungsnachweis]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [mit Note]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [benotete Teilnahme]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [benotet]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [Teilnahmebescheinigung]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
-      - [nur teilnehmen]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
-      - [nur Teilnhame]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
-      - [Teilnahme]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
-      - [Anwesenheit]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Certificate of Achievement]{"entity": "certificate", "value": "Leistungsnachweis"}
+      - [Graded]{"entity": "certificate", "value": "Leistungsnachweis"}
+      - [Graded Participation]{"entity": "certificate", "value": "Leistungsnachweis"}
+      - [With Grade]{"entity": "certificate", "value": "Leistungsnachweis"}
+      - [participation]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Participation Only]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Attendance Only]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Attendance]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
 
   - intent: stop_form
     examples: |
-      - ich möchte die kurssuche beenden
-      - ich will die Suche stoppen
-      - ich will die Suche anhalten
-      - ich will die Suche beenden
-      - ich will die Suche abbrechen
-      - ich will die Befragung stoppen
-      - ich will die Befragung anhalten
-      - ich will die Befragung beenden
-      - ich will die kurssuche stoppen
-      - ich will die kurssuche anhalten
-      - ich will die kurssuche beenden
-      - ich will die kurssuche abbrechen
-      - ich möchte die Suche stoppen
-      - ich möchte die Suche anhalten
-      - ich möchte die Suche beenden
-      - ich möchte die Befragung stoppen
-      - ich möchte die Befragung anhalten
-      - ich möchte die Befragung beenden
-      - ich möchte die Befragung abbrechen
-      - ich möchte die kurssuche stoppen
-      - ich möchte die kurssuche anhalten
-      - ich möchte die kurssuche beenden
-      - ich möchte die kurssuche abbrechen
-      - befragnung anhalten
-      - befragung abbrechen
-      - kurssuche beenden
-      - suche abbrechen
-      - abbruch
-      - bitte abbrechen
-      - sofort abbrechen
-      - ich will abbrechen
+      - I want to end the course search.
+      - I want to stop the search.
+      - I want to pause the search.
+      - I want to end the search.
+      - I want to cancel the search.
+      - I want to stop the survey.
+      - I want to pause the survey.
+      - I want to end the survey.
+      - I want to stop the course search.
+      - I want to pause the course search.
+      - I want to end the course search.
+      - I want to cancel the course search.
+      - I want to stop the search.
+      - I want to pause the search.
+      - I want to end the search.
+      - I want to stop the survey.
+      - I want to pause the survey.
+      - I want to end the survey.
+      - I want to cancel the survey.
+      - I want to stop the course search.
+      - I want to pause the course search.
+      - I want to end the course search.
+      - I want to cancel the course search.
+      - Pause survey.
+      - Cancel survey.
+      - End course search.
+      - Cancel search.
+      - Cancel.
+      - Please cancel.
+      - Cancel immediately.
+      - I want to cancel.
 
 # # Synonyms recommender_form  
   - synonym: Teilnahmebescheinigung
     examples: |
-      - Teilnahme
-      - Bescheinigung
-      - Anwesenheit
-      - nur teilnehmen
-      - nur Teilnahme
+      - Participation Only
+      - Attendance Only
+      - Attendance
   - synonym: Leistungsnachweis
     examples: |
-      - mit Note
-      - benotete Teilnahme
-      - bewertete Teilnahme
-      - benotet
+      - Certificate of Achievement
+      - Graded
+      - certificate
+      - Graded Participation
+      - With Grade
   - synonym: englisch
     examples: |
       - EN
       - english
-      - Englisch
   - synonym: deutsch
     examples: |
       - DE
       - german
-      - Deutsch
   - synonym: KI-Einführung
     examples: |
-      - Einführung in die KI
-      - Einführung AI
-      - Einstieg in die KI
-      - Einführung KI
-      - Einstieg KI
+      - Introduction to AI
+      - AI Introduction
+      - Getting Started with AI
+      - Getting Started in AI
   - synonym: KI-Vertiefung
     examples: |
-      - Vertiefung einzelner Themenfelder der KI
-      - Vertiefung einzelner Themenfelder
-      - Vertiefung Themenfelder
-      - Vertiefung KI
+      - Deepening of individual topics in AI
+      - Deepening of individual topics
+      - Deepening of topics
+      - AI deepening
   - synonym: KI-Berufsfelder
     examples: |
-      - KI in Berufsfeldern
-      - KI Beruf
-      - KI Berufsfelder
+      - AI in professional fields
+      - AI professional fields
+      - AI profession
   - synonym: KI-Gesellschaft
     examples: |
-      - KI und Gesellschaft
-      - KI Gesellschaft
+      - AI and society
+      - AI society
   - synonym: Maschinelles Lernen
     examples: |
       - ML
       - Machine Learning
   - synonym: Einsteiger
     examples: |
-      - Einsteigerin
-      - Anfängerin
-      - keine Erfahrung
-      - einsteiger
+      - beginner
+      - novice
+      - beginners
+      - novices
+      - no experience
   - synonym: Fortgeschritten
     examples: |
-      - Fortgeschrittene
+      - advanced
   - synonym: Experte
     examples: |
-      - Expertin
-      - Experten
+      - expert
+      - experts
   - synonym: '10'
     examples: |
-      - zehn
-      - Zehn
       - ten
   - synonym: '50'
     examples: |
-      - fünfzig
       - fifty
   - synonym: '51'
     examples: |
-      - mehr als fünfzig
-      - über fünfzig
-      - mehr als 50
-      - über 50
-  - synonym: Statistik
-    examples: |
-      - Einführung R
-      - statistische Methoden
-      - R Programmierung
+      - more than fifty
+      - over fifty
+      - more than 50
+      - over 50
