@@ -49,6 +49,7 @@ actions:
   - action_check_recommender_form_active
   - utter_bot_information
   - action_recommender_or_search_topics
+  - utter_introduction_recommender_form
 entities:
   - language
   - topic
@@ -183,6 +184,8 @@ responses:
   - text: We are now restarting the conversation! 
   utter_submit_recommender_form:
   - text: "A little moment please, I'll find suitable courses for you."
+  utter_introduction_recommender_form:
+  - text: "For the course search, I will ask you a few questions. Let's get started right away!"
 
 session_config:
   session_expiration_time: 60  
