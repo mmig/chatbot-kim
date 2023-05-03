@@ -24,7 +24,6 @@ class CourseSet(Action):
 
 
 
-
 class ActionGetCoursesButtons(Action):
 	class Responses(ResponseEnum):
 		no_courses = auto()
@@ -184,7 +183,6 @@ class ActionGetAchievements(Action):
 			SlotSet('current_course_title', None)]
 
 
-
 class ActionGetCertificate(Action):
 	class Responses(ResponseEnum):
 		download_achievement = auto()
@@ -277,7 +275,10 @@ class ActionSearchTopic(Action):
 		return "action_search_topic"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		searchTopic = tracker.latest_message['entities'][0]['value']
+		# # modified by DFKI
+		# searchTopic = tracker.latest_message['entities'][0]['value']
+
+		searchTopic = str(tracker.get_slot("search_topic"))
 		searchTopicLower = searchTopic.lower()
 
 		if searchTopicLower == self.topic_medicine:
@@ -304,4 +305,5 @@ class ActionSearchTopic(Action):
 			dispatcher.utter_message(message)
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
-		return[]
+		# # modified by DFKI
+		return[SlotSet("search_topic", None)]

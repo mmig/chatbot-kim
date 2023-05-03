@@ -293,6 +293,33 @@ nlu:
       - I would like to become a Fellowship
       - Fellow
 
+# added by DFKI
+  - intent: faq/ask_duration_parameter
+    examples: |
+      - Explain the duration of the courses
+      - What is the meaning of the time specification?
+      - Explain the number of hours.
+      - How do the time specifications work?
+      - Does the time division of the courses refer to the month?
+      - Is the course duration meant to be weekly?
+      - What is meant by the extent?
+
+  - intent: faq/ask_about_lang_english
+    examples: |
+      - Is the KI Campus also available in English?
+      - Are there also English courses?
+      - Does KI Campus offer English courses?
+      - Is there also an English course offering?
+      - Can I use KI Campus in English?
+      - What languages do you have?
+      - Do you have other languages?
+      - Are there any other languages?
+      - Do you have more language options?
+      - Language
+      - What language
+      - What language do you have?
+      - Do you have English language?
+
   - synonym: AI
     examples: |
       - Künstliche Intelligenz

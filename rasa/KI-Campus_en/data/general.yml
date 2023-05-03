@@ -317,10 +317,11 @@ nlu:
       - [nutrition](search_topic) courses
       - Courses in [cancer](search_topic)
       - offer courses in [economy](search_topic)
-      - I am looking for a course
-      - learning offer
-      - Courses on the topic
-      - I need the course offer
-      - I am looking for a course on the topic
-      - I would like to have the learning offer
-      - I want to have a [medicine](search_topic) course
+# # modified by DFKI: conflict with start_recommender_form / not finished in action_search_topic
+      # - I am looking for a course
+      # - learning offer
+      # - Courses on the topic
+      # - I need the course offer
+      # - I am looking for a course on the topic
+      # - I would like to have the learning offer
+      # - I want to have a [medicine](search_topic) course
