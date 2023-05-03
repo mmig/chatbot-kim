@@ -35,6 +35,14 @@ entities:
 - search_topic
 
 slots:
+# # added by DFKI
+  search_topic:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: search_topic
+      intent: search_topics 
   all_courses:
     type: list
     influence_conversation: false
@@ -84,9 +92,6 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-session_config:
-  session_expiration_time: 5
-  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Thanks for providing me with the course title!
@@ -98,10 +103,11 @@ responses:
   - text: 'Sorry, I cannot answer that. Feel free to use our contact form to ask your question or type "help".'
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
-  utter_have_a_nice_day:
-  - text: Have a nice day! Bye.
-  utter_bye:
-  - text: Bye!
+  # # modified by DFKI: moved to greetbot
+  # utter_have_a_nice_day:
+  # - text: Have a nice day! Bye.
+  # utter_bye:
+  # - text: Bye!
   utter_more_info:
   - text: Okay. What can I help you with?
   utter_anything_else:
@@ -126,6 +132,12 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: From online courses to videos and podcasts to interactive exercises - the AI Campus provides learners with a diverse selection of high-quality free learning opportunities on various AI topics bundled on one learning platform.
   utter_faq/ask_about_topics:
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True
+    text: 'You can find courses on basics as well as interdisciplinary issues and in-depth studies of individual areas and topics in AI on the AI Campus.'
   - text: 'The AI Campus covers the basics as well as interdisciplinary issues and in-depth studies of individual areas and topics in AI (such as machine learning). In addition, there are specific offerings that specifically cover the needs of individual professional fields or disciplines (such as AI in medicine, AI in education). The learning offerings are continuously being expanded.'
   utter_faq/ask_about_prior_knowledge:
   - text: For courses for beginners, only basic mathematical knowledge is required and no prior technical knowledge. More advanced courses require prior knowledge, which is specified on the respective course page.
@@ -133,12 +145,29 @@ responses:
   - text: You do not have to be enrolled at a university to use the learning opportunities of the AI-Campus online.
   utter_faq/ask_about_recognition:
   - text: Selected courses can be awarded ECTS credits and recognized or credited in coordination with the respective university. The AI-Campus cannot give a general approval for recognition. Please contact your university with this request.
+  utter_faq/ask_about_lang_english:
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True
+    text: We offer courses only in German and English on the AI Campus. Surely, there is something suitable for you!
+  - text: Selected courses are available in English. Our English-language learning opportunities are continuously expanding.
   utter_faq/ask_about_certification:
   - text: Currently, certificates of attendance can be obtained on the AI campus for all online courses and certificates of achievement can also be obtained for selected online courses. 
   utter_faq/ask_about_course_timelimit:
   - text: Most of our learning opportunities can be completed at your own pace, for some of them there are time constraints. You will find this information in the description of the respective learning offer.
   utter_faq/ask_about_course_costs:
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True 
+    text: The use of all learning offers of the AI-Campus is free of charge, and you can start anytime.
   - text: The use of all learning offers of the AI-Campus is free of charge. 
+  # # added by DFKI
+  utter_faq/ask_duration_parameter:
+  - text: To help you assess the workload of a course, our courses have been divided based on their total number of hours.
   utter_faq/ask_become_editor:
   - text: We are always open to new learning opportunities and welcome your ideas. <a href="https://ki-campus.org/contact" _blank>Feel free to contact us!</a>!
   utter_faq/ask_about_partners_cooperations:
@@ -193,3 +222,6 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Thanks for your feedback!"
+session_config:
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false
