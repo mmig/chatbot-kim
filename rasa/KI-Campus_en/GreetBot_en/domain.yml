@@ -11,13 +11,14 @@ actions:
 - utter_goodbye
 - utter_you_are_welcome
 - utter_have_a_nice_day
+- utter_bye
 
 responses:
 
   utter_greet:
 #  - text: Hey, wie kann ich dir helfen?
 #  - text: Hey, was kann ich für dich tun?
-#  # modified by DFKI
+# # modified by DFKI
   - text: I am KIm, your virtual assistant! I will answer your questions about the AI campus, your learning progress and course enrollments. Additionally, I'll help you find your desired course. I still have a lot to learn and your questions will help me. So feel free to ask me anything you like about the AI campus! 
 
   # added by DFKI
@@ -33,6 +34,9 @@ responses:
 # # modified by DFKI: moved to greetbot
   utter_have_a_nice_day:
   - text: Have a nice day and see you soon 👋
+
+  utter_bye:
+  - text: Bye!
 
   utter_you_are_welcome:
   - text: You are welcome!

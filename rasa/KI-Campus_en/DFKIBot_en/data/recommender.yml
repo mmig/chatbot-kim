@@ -112,7 +112,7 @@ nlu:
       - Can you adjust my prior knowledge?
       - Can you change my prior knowledge?
       - I want recommendations for all levels of prior knowledge
-      - Also give me courses for [beginners]{"entity": "level", "value": "Anfänger"}
+      - Also give me courses for [beginners]{"entity": "level", "value": "Einsteiger"}
       - Give me course recommendations for all levels of prior knowledge
       - Give me recommendations for [experts]{"entity": "level", "value": "Experte"}
       - I want courses for all levels

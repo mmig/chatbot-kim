@@ -2,7 +2,7 @@ version: '3.1'
 
 stories:
 
-- story: start recommender greet
+  - story: start recommender greet
     steps:
     - intent: greet
     - action: utter_greet
