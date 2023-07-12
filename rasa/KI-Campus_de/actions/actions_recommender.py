@@ -211,6 +211,51 @@ def _retrieve_filter_result_count_for(count_param: str, tracker: Tracker) -> Opt
 	return None
 
 
+def _add_count_to_button_titles(count_result: Dict[str, Union[str, Dict[str, int]]], buttons: List[Dict[str,str]]):
+	"""
+	FIXME TEST HELPER
+	processes a button list with count-results for recommendation and appends the count to the
+	button title
+
+	SIDE EFFECTS:
+	will remove buttons form the list, if the count result is 0 (i.e. clicking that button would
+	result in an empty recommendation list)
+
+	TODO in calling Action: should check if button list is <= 1, and if so, should automatically apply the remaining option to the slot without prompting user
+	"""
+	size = len(buttons)
+	applied = 0
+	for count_field in count_result['values']:
+		payload_field = '/undecided' if count_field == 'egal' else '"{}"'.format(count_field)
+		remove_btn = None
+		for btn in buttons:
+			if payload_field in btn['payload'].lower():
+				val = count_result['values'][count_field]
+				if val == 0:
+					remove_btn = btn
+					break
+				btn['title'] += ' ({})'.format(val)
+				applied += 1
+				logger.debug('applied count for %s[%s]: %s"...', count_result['param'], count_field, val)
+				break
+		if remove_btn:
+			logger.info('removing button %s, because it would result in empty recommendation list', remove_btn['payload'])
+			buttons.remove(remove_btn)
+	if applied < size:
+		if 'alternatives' in count_result:
+			logger.debug('trying to apply count for %s from "alternatives"...', count_result['param'])
+			for count_field in count_result['alternatives']:
+				for btn in buttons:
+					if count_field in btn['payload'].lower():
+						val = count_result['alternatives'][count_field]
+						btn['title'] += ' ({})'.format(val)
+						applied += 1
+						logger.debug('applied count for %s[%s] (from "alternatives"): %s"...', count_result['param'], count_field, val)
+						break
+		else:
+			logger.warning('could not apply all count-results for %s, but there is no "alternatives" field in count result!', count_result['param'])
+
+
 class ActionGetLearningRecommendation(Action):
 	class Responses(ResponseEnum):
 		no_recommendations_found = auto()
@@ -494,6 +539,9 @@ class ActionAskLanguage(Action):
 			{'title': get_response(self.responses, self.Responses.language_option_english), 'payload': '/inform{"language":"Englisch"}'},
 			{'title': get_response(self.responses, self.Responses.language_option_any), 'payload': '/undecided'}]
 
+		# FIXME test: adding count to button titles:
+		_add_count_to_button_titles(count_response, buttons)
+
 		# check if slot value should get changed
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_language_slot':
@@ -543,6 +591,9 @@ class ActionAskTopic(Action):
 			{'title': get_response(self.responses, self.Responses.topic_option_machine_learning), 'payload': '/inform{"topic":"Maschinelles Lernen"}'},
 			{'title': get_response(self.responses, self.Responses.topic_option_any), 'payload': '/undecided'}]
 
+		# FIXME test: adding count to button titles:
+		_add_count_to_button_titles(count_response, buttons)
+
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_topic_slot':
 			text = get_response(self.responses, self.Responses.confirm_and_show_change_topic)
@@ -581,6 +632,28 @@ class ActionAskLevel(Action):
 			{'title': get_response(self.responses, self.Responses.level_option_beginner), 'payload': '/inform{"level":"Anfänger"}'},
 			{'title': get_response(self.responses, self.Responses.level_option_advanced), 'payload': '/inform{"level":"Fortgeschritten"}'},
 			{'title': get_response(self.responses, self.Responses.level_option_expert), 'payload': '/inform{"level":"Experte"}'}]
+
+		# FIXME test: adding count to button titles:
+		_add_count_to_button_titles(count_response, buttons)
+		# FIXME [russa] test code for "short cutting" in case no or only 1 button is  left
+		#       apply that value to slot without prompting user, and try to trigger next action
+		#       FIXME [russa] currently hard-coded next action action_get_learning_recommendation (may not always be the case?)
+		#       FIXME [russa] currently this results in multiple invocations of action action_get_learning_recommendation ... not sure why(?
+		if len(buttons) <= 1:
+			logger.critical('auto-apply single remaining option for "level": %s', buttons)  # FIXME TEST change to logger.debug after testing
+			if len(buttons) == 0:
+				logger.critical('DO auto-apply /undecided option for "level"')  # FIXME TEST change to logger.debug after testing
+				return [UserUttered('/undecided', parse_data={'intent': {'name': 'action_get_learning_recommendation', 'confidence': 1.0}}),
+						SlotSet("level", "egal"),
+						FollowupAction('action_get_learning_recommendation')]
+			else:
+				btn = buttons[0]
+				val = json.loads(btn['payload'].replace("/inform", ''))  # FIXME HACK extract value from payload ... should do this more cleanly
+				logger.critical('DO auto-apply single remaining option for "level": %s', val['level'])  # FIXME TEST change to logger.debug after testing
+				return [UserUttered(btn['payload'], parse_data={'intent': {'name': 'action_get_learning_recommendation', 'confidence': 1.0}}),
+						SlotSet("level", val['level']),
+						FollowupAction('action_get_learning_recommendation')]
+
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_level_slot':
@@ -621,6 +694,10 @@ class ActionAskMaxDuration(Action):
 			{'title': get_response(self.responses, self.Responses.duration_option_max_50h), 'payload': '/inform{"max_duration":"50"}'},
 			{'title': get_response(self.responses, self.Responses.duration_option_any), 'payload': '/inform{"max_duration":"51"}'}]
 
+
+		# FIXME test: adding count to button titles:
+		_add_count_to_button_titles(count_response, buttons)
+
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_max_duration_slot':
 			text = get_response(self.responses, self.Responses.confirm_and_show_change_duration)
@@ -659,6 +736,9 @@ class ActionAskCertificate(Action):
 			{'title': get_response(self.responses, self.Responses.certificate_option_unqualified), 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
 			{'title': get_response(self.responses, self.Responses.certificate_option_qualified), 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
 			{'title': get_response(self.responses, self.Responses.certificate_option_any), 'payload': '/undecided'}]
+
+		# FIXME test: adding count to button titles:
+		_add_count_to_button_titles(count_response, buttons)
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_certificate_slot':
