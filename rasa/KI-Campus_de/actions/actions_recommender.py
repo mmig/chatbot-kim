@@ -1,3 +1,4 @@
+import logging
 from enum import auto
 from typing import Text, Dict, Any, List, Optional, Union
 from urllib import parse
@@ -15,6 +16,9 @@ from rasa_sdk.types import DomainDict
 
 from .settings import get_recommender_config, RecommenderConfigEnum
 from .responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response, ActionResponsesFiles
+
+
+logger = logging.getLogger(__name__)
 
 
 class ActionRestart(Action):
@@ -44,7 +48,7 @@ class ActionCheckLogin(Action):
 		current_state = tracker.current_state()
 		is_logged_in = tracker.get_slot('user_login')
 		if is_logged_in:
-			# print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')), '\n')  # DEBUG
+			logger.debug('ActionCheckLogin[sender_id="%s"]: ALREADY LOGGED IN, User ID %s', current_state['sender_id'], tracker.get_slot('user_id'))  # DEBUG
 			return []
 
 		token = current_state['sender_id']
@@ -55,7 +59,7 @@ class ActionCheckLogin(Action):
 						 })
 		status = r.status_code
 
-		# print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content), '\n')  # DEBUG
+		logger.debug('ActionCheckLogin[sender_id="%s"]: status_code %s, headers %s, content: %s', token, r.status_code, r.headers, json.loads(r.content))  # DEBUG
 
 		if status == 200:
 			response = json.loads(r.content)
@@ -105,7 +109,7 @@ class ActionFetchProfile(Action):
 		# search_terms = ["KI", "Machine Learning"]
 		course_visits = []
 		search_terms = []
-		# print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms, '\n')  # DEBUG
+		logger.debug('ActionFetchProfile: enrollments %s  | course_visits %s  | search_terms %s', enrollments, course_visits, search_terms)  # DEBUG
 
 		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
@@ -149,6 +153,9 @@ def _create_filter_request_params(tracker: Tracker) -> Dict[Text, Any]:
 		# "search_terms": search_terms,
 	}
 
+	# DEBUG: show search/filter parameters
+	logger.debug("creating query parameters for recommendations with filters: \n    %s", params)
+
 	return params
 
 
@@ -183,6 +190,8 @@ def _retrieve_filter_result_count_for(count_param: str, tracker: Tracker) -> Opt
 	params = _create_filter_request_params(tracker)
 	params[count_param] = 'zaehle'
 
+	logger.debug('count filter-req results for param "%s"...', count_param)
+
 	service_url = get_recommender_config(RecommenderConfigEnum.URL)
 	service_token = get_recommender_config(RecommenderConfigEnum.TOKEN)
 	r = requests.get('{0}count_filtered_recommendation_learnings/'.format(service_url),
@@ -194,7 +203,11 @@ def _retrieve_filter_result_count_for(count_param: str, tracker: Tracker) -> Opt
 
 	if r.status_code < 400:
 		count_results = json.loads(r.content)
+		logger.debug('results for counting filter-req for param "%s": %s', count_param, count_results)
 		return count_results
+	else:
+		result = str(r.content)
+		logger.warning('FAILED retrieving count filter-req results for param "%s" with status %s: %s', count_param, r.status_code, result)
 	return None
 
 
@@ -323,19 +336,19 @@ class ActionGetLearningRecommendation(Action):
 		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			# DEBUG:
-			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			if logger.isEnabledFor(logging.DEBUG): logger.error(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		elif status == 404:  # Status-Code 404 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_404))
 			# DEBUG:
-			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			if logger.isEnabledFor(logging.DEBUG): logger.error(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		elif status == 500:  # Status-Code 500 Invalid Parameter
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_500))
 			# DEBUG:
-			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			if logger.isEnabledFor(logging.DEBUG): logger.error(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_unknown).format(str(r.content)))
 			# DEBUG:
-			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			if logger.isEnabledFor(logging.DEBUG): logger.error(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 
 		return [SlotSet("recommendations", response)]
 
