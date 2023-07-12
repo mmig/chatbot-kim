@@ -1,9 +1,9 @@
 from enum import auto
-from typing import Text, Dict, Any, List, Optional
+from typing import Text, Dict, Any, List, Optional, Union
 from urllib import parse
 
 from rasa_sdk import Action, Tracker
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, UserUttered, FollowupAction
 
 import requests
 import json
@@ -13,7 +13,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import Restarted
 from rasa_sdk.types import DomainDict
 
-from .settings import get_recommender_config
+from .settings import get_recommender_config, RecommenderConfigEnum
 from .responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response, ActionResponsesFiles
 
 
@@ -113,6 +113,91 @@ class ActionFetchProfile(Action):
 # RECOMMENDER
 ###################################
 
+
+def _create_filter_request_params(tracker: Tracker) -> Dict[Text, Any]:
+	"""
+	HELPER for creating request-parameters from current slot-values
+			(to be used in querying for filter/recommendations)
+
+	:param tracker: the RASA tracker instance
+	:return: the parameters for filter/recommendation query
+	"""
+
+	language = str(tracker.get_slot("language"))
+	topic = str(tracker.get_slot("topic"))
+	level = str(tracker.get_slot("level"))
+	max_duration_str = tracker.get_slot("max_duration")  # int(tracker.get_slot("max_duration"))
+	certificate = str(tracker.get_slot("certificate"))
+	enrollments = tracker.get_slot("enrollments")
+	# # DISABLED [russa]: currently not used for filtering / recommendations:
+	# course_visits = tracker.get_slot("course_visits")
+	# search_terms = tracker.get_slot("search_terms")
+
+	if enrollments:
+		# use course_code as ID for courses:
+		enrollments = [course['course_code'] for course in enrollments]
+
+	params = {
+		"language": language,
+		"topic": topic,
+		"level": level,
+		"max_duration": max_duration_str,  # str(max_duration),
+		"certificate": certificate,
+		"enrollments": enrollments,
+		# # DISABLED (see comment above)
+		# "course_visits": course_visits,
+		# "search_terms": search_terms,
+	}
+
+	return params
+
+
+def _retrieve_filter_result_count_for(count_param: str, tracker: Tracker) -> Optional[Dict[str, Union[str, Dict[str, int]]]]:
+	"""
+	HELPER send query to recommender for counting results for a filter parameter/slot
+			(all other parameters will be set according to current slots)
+
+	EXAMPLE RESULT for counting results for `"level"`:
+
+	{
+		"param": "level",
+		"values": {
+			"anfänger": 55,
+			"fortgeschritten": 10,
+			"experte": 0,
+			"egal": 65
+		},
+		"alternatives": {
+			"einsteiger": 55
+		}
+	}
+
+	NOTE  `"alternatives"` contains alternative names for `"values"`, and is only present, if there
+			are alternative names.
+
+	:param count_param: the parameter/field name for which results should be counted
+	:param tracker: the RASA tracker instance
+	:return: the parameters for filter/recommendation query
+	"""
+
+	params = _create_filter_request_params(tracker)
+	params[count_param] = 'zaehle'
+
+	service_url = get_recommender_config(RecommenderConfigEnum.URL)
+	service_token = get_recommender_config(RecommenderConfigEnum.TOKEN)
+	r = requests.get('{0}count_filtered_recommendation_learnings/'.format(service_url),
+					 headers={
+						 "content-type": "application/json",
+						 "Authorization": 'Token {0}'.format(service_token),
+					 },
+					 params=params)
+
+	if r.status_code < 400:
+		count_results = json.loads(r.content)
+		return count_results
+	return None
+
+
 class ActionGetLearningRecommendation(Action):
 	class Responses(ResponseEnum):
 		no_recommendations_found = auto()
@@ -171,23 +256,9 @@ class ActionGetLearningRecommendation(Action):
 
 	responses: Dict[str, str]
 
-	service_url: str
-	service_token: str
-
 	def __init__(self):
 		self.responses = get_response_texts(self.name(), ActionResponsesFiles.actions_recommender)
 		assert_responses_exist(self.responses, self.Responses)
-
-		# NOTE will print error message if file or fields are missing:
-		recommender_config = get_recommender_config()
-		self.service_url = recommender_config['url']
-		self.service_token = recommender_config['token']
-
-		# DEBUG output
-		# if recommender_config and recommender_config['url'] and recommender_config['token']:
-		# 	print("\n  endpoint config: {0}\n".format(recommender_config))
-		# else:
-		# 	print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
 
 	def name(self) -> Text:
 		return "action_get_learning_recommendation"
@@ -196,43 +267,19 @@ class ActionGetLearningRecommendation(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-		language = str(tracker.get_slot("language"))
-		topic = str(tracker.get_slot("topic"))
-		level = str(tracker.get_slot("level"))
-		max_duration_str = tracker.get_slot("max_duration")  # int(tracker.get_slot("max_duration"))
-		certificate = str(tracker.get_slot("certificate"))
-		enrollments = tracker.get_slot("enrollments")
-		course_visits = tracker.get_slot("course_visits")
-		search_terms = tracker.get_slot("search_terms")
+		# TODO: maybe option 2 implement after delete slot value
 
-		if enrollments:
-			enrollments = [course['course_code'] for course in enrollments]
+		params = _create_filter_request_params(tracker)
 
-		# to do: maybe option 2 implement after delete slot value
-
-		# DEBUG: show search/filter parameters
-		# debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
-		# 				 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
-		# 					language, topic, level, max_duration_str, certificate, enrollments, course_visits, search_terms
-		# 				 )
-		# debug_params = get_response(self.responses, self.Responses.debug_recommendation_parameters).format(debug_info_msg)
-		# dispatcher.utter_message(text=debug_params)
-
-		r = requests.get('{0}filtered_recommendation_learnings/'.format(self.service_url),
+		service_url = get_recommender_config(RecommenderConfigEnum.URL)
+		service_token = get_recommender_config(RecommenderConfigEnum.TOKEN)
+		r = requests.get('{0}filtered_recommendation_learnings/'.format(service_url),
 			headers={
 				"content-type": "application/json",
-				"Authorization": 'Token {0}'.format(self.service_token),
+				"Authorization": 'Token {0}'.format(service_token),
 			},
-			params={
-				"language": language,
-				"topic": topic,
-				"level": level,
-				"max_duration": max_duration_str,  # str(max_duration),
-				"certificate": certificate,
-				"enrollments": enrollments,
-				"course_visits": course_visits,
-				"search_terms": search_terms,
-			})
+			params=params)
+
 		status = r.status_code
 		response: Optional[List] = None
 		if status == 200:
@@ -270,6 +317,7 @@ class ActionGetLearningRecommendation(Action):
 				if limit < size:
 					rest = size - limit
 					msg_type = self.Responses.found_recommendations_more_single if rest == 1 else self.Responses.found_recommendations_more_multiple
+					# TODO instead of text-message, use button that would trigger ActionAdditionalLearningRecommendation (?)
 					dispatcher.utter_message(get_response(self.responses, msg_type).format(rest))
 
 		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
@@ -425,6 +473,9 @@ class ActionAskLanguage(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+		count_response = _retrieve_filter_result_count_for('language', tracker)
+		# TODO use count result when displaying button(?)
+
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.language_option_german), 'payload': '/inform{"language":"Deutsch"}'},
 			{'title': get_response(self.responses, self.Responses.language_option_english), 'payload': '/inform{"language":"Englisch"}'},
@@ -467,6 +518,9 @@ class ActionAskTopic(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+		count_response = _retrieve_filter_result_count_for('topic', tracker)
+		# TODO use count result when displaying button(?)
+
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.topic_option_introduction_ai), 'payload': '/inform{"topic":"ki-einführung"}'},
 			{'title': get_response(self.responses, self.Responses.topic_option_specialized_ai), 'payload': '/inform{"topic":"ki-vertiefung"}'},
@@ -507,6 +561,9 @@ class ActionAskLevel(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+		count_response = _retrieve_filter_result_count_for('level', tracker)
+		# TODO use count result when displaying button(?)
+
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.level_option_beginner), 'payload': '/inform{"level":"Anfänger"}'},
 			{'title': get_response(self.responses, self.Responses.level_option_advanced), 'payload': '/inform{"level":"Fortgeschritten"}'},
@@ -543,6 +600,9 @@ class ActionAskMaxDuration(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+		count_response = _retrieve_filter_result_count_for('max_duration', tracker)
+		# TODO use count result when displaying button(?)
+
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.duration_option_max_10h), 'payload': '/inform{"max_duration":"10"}'},
 			{'title': get_response(self.responses, self.Responses.duration_option_max_50h), 'payload': '/inform{"max_duration":"50"}'},
@@ -578,6 +638,9 @@ class ActionAskCertificate(Action):
 	def run(self, dispatcher: CollectingDispatcher,
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+		count_response = _retrieve_filter_result_count_for('certificate', tracker)
+		# TODO use count result when displaying button(?)
 
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.certificate_option_unqualified), 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
