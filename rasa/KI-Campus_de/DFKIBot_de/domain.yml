@@ -23,7 +23,6 @@ intents:
   - undecided
   - restart
   - stop_form
-  - negative_feedback
   - additional_learning_recommendation
   - change_language_slot
   - change_topic_slot
@@ -38,9 +37,6 @@ actions:
   - validate_recommender_form
   - action_fetch_profile
   - utter_anything_else_v2
-  - utter_tip_login
-  - utter_affirm_start_recommender_form
-  - utter_affirm_start_recommender_form_login 
   - action_additional_learning_recommendation
   - action_ask_language
   - action_ask_topic
@@ -48,10 +44,10 @@ actions:
   - action_ask_max_duration
   - action_ask_certificate
   - action_delete_slot_value
-  - utter_bot_apology
   - action_check_recommender_form_active
   - utter_bot_information
   - action_recommender_or_search_topics
+  - utter_introduction_recommender_form
 entities:
   - language
   - topic
@@ -171,38 +167,53 @@ slots:
     mappings:
     - type: custom
 responses:
-# # FIXME
-  utter_tip_login:
-  - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
-  utter_affirm_start_recommender_form_login:
-  - text: "Cool! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
-    buttons: 
-      - title: Ja, los geht's!
-        payload: /affirm   
-      - title: Nein, ich habe ein anderes Anliegen!
-        payload: /deny
-  utter_affirm_start_recommender_form:
-  - text: "Cool! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
-    buttons: 
-      - title: Ja, los geht's!
-        payload: /affirm   
-      - title: Nein, ich habe ein anderes Anliegen!
-        payload: /deny
   utter_anything_else_v2:
   - text: Womit kann ich dir noch behilflich sein?
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
   - text: Wie kann ich dir sonst noch helfen?
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
   utter_ask_continue_recommender_form:
   - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
-  utter_bot_apology:
-  - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
+  # utter_bot_apology:
+  # - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
   # utter_bot_apology_feedback:
   # - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
   utter_bot_information:
   - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
   utter_restart:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_recommender_form:
   - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
+  utter_introduction_recommender_form:
+  - text: "Für die Kurssuche werde ich dir ein paar Fragen stellen. Lass uns direkt loslegen!"
 
 session_config:
   session_expiration_time: 60  

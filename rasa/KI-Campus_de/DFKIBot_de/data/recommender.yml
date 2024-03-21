@@ -2,28 +2,28 @@ version: '3.1'
 
 nlu:
 
-  - intent: negative_feedback
-    examples: |
-      - Das war nicht hilfreich
-      - Hat nicht geholfen
-      - Wirklich nich hilfreich
-      - Das war schlecht
-      - Die Empfehlungen waren schlecht
-      - Schlechte Vorschläge
-      - Hat mir nicht gefallen
-      - Das ist unhilfreich
-      - Unhilfreich
-      - Du bist schlecht
-      - Du bist dumm
-      - Schlecht
-      - Du bist schlecht
-      - Deine Vorschläge sind nutzlos
-      - Nutzlose Vorschläge
-      - Deine Vorschläge sind dumm
-      - Unhilfreich
-      - Du bist nutzlos
-      - Das ist nutzlos
-      - Das war  schlecht
+  # - intent: negative_feedback
+  #   examples: |
+  #     - Das war nicht hilfreich
+  #     - Hat nicht geholfen
+  #     - Wirklich nich hilfreich
+  #     - Das war schlecht
+  #     - Die Empfehlungen waren schlecht
+  #     - Schlechte Vorschläge
+  #     - Hat mir nicht gefallen
+  #     - Das ist unhilfreich
+  #     - Unhilfreich
+  #     - Du bist schlecht
+  #     - Du bist dumm
+  #     - Schlecht
+  #     - Du bist schlecht
+  #     - Deine Vorschläge sind nutzlos
+  #     - Nutzlose Vorschläge
+  #     - Deine Vorschläge sind dumm
+  #     - Unhilfreich
+  #     - Du bist nutzlos
+  #     - Das ist nutzlos
+  #     - Das war  schlecht
       
   - intent: additional_learning_recommendation
     examples: |
@@ -329,32 +329,9 @@ nlu:
       - gib mir eine empfehlung
       - ich möchte eine kursempfehlung bekommen
       - empfehle mir einen kurs
-      - welche empfehlung kannst du mir geben      
-# #
-      # - Ich suche Kurse über [ML](topic)
-      # - Ich suche Kurse über [Machine Learning](topic)
-      # - Ich suche Kurse über [Data Science](topic)
-      # - Ich suche Kurse über [Maschinelles Lernen](topic)
-      # - Ich suche Kurse über [AI](topic)
-      # - Ich suche Kurse über [KI](topic)
-      # - Ich suche Kurse über [Artificial Intelligence](topic)
-      # - Ich suche Kurse über [Künstliche Intelligenz](topic)
-      # - Ich suche Kurse zu [ML](topic)
-      # - Ich suche Kurse zu [Machine Learning](topic)
-      # - Ich suche Kurse zu [Data Science](topic)
-      # - Ich suche Kurse zu [Maschinelles Lernen](topic)
-      # - Ich suche Kurse zu [AI](topic)
-      # - Ich suche Kurse zu [KI](topic)
-      # - Ich suche Kurse zu [Artificial Intelligence](topic)
-      # - Ich suche Kurse zu [Künstliche Intelligenz](topic)
-      # - Ich suche Kurse zum Thema [ML](topic)
-      # - Ich suche Kurse zum Thema [Machine Learning](topic)
-      # - Ich suche Kurse zum Thema [Data Science](topic)
-      # - Ich suche Kurse zum Thema [Maschinelles Lernen](topic)
-      # - Ich suche Kurse zum Thema [AI](topic)
-      # - Ich suche Kurse zum Thema [KI](topic)
-      # - Ich suche Kurse zum Thema [Artificial Intelligence](topic)
-      # - Ich suche Kurse zum Thema [Künstliche Intelligenz](topic)
+      - welche empfehlung kannst du mir geben   
+      - ich möchte eine themensuche machen
+      - themensuche starten
 
   - intent: inform
     examples: |
@@ -420,7 +397,6 @@ nlu:
       - in [französisch]{"entity": "language", "value": "französisch"}
       - auf [spanisch]{"entity": "language", "value": "spanisch"}
       - auf [französisch]{"entity": "language", "value": "französisch"}
-
       - ich schätze mich als [Einsteiger]{"entity": "level", "value": "Einsteiger"}
       - ich schätze mich als [Einsteigerin]{"entity": "level", "value": "Einsteiger"}
       - ich schätze mich als [Fortgeschritten]{"entity": "level", "value": "Fortgeschritten"}
@@ -440,35 +416,27 @@ nlu:
       - ich schätze mich als [Fortgeschrittene]{"entity": "level", "value": "Fortgeschritten"}
       - ich bin [Expertin]{"entity": "level", "value": "Experte"}
       - [Expertin]{"entity": "level", "value": "Experte"}
-
       - [Einführung in die KI]{"entity": "topic", "value": "KI-Einführung"}
       - [Einführung KI]{"entity": "topic", "value": "KI-Einführung"}
       - [Einstieg KI]{"entity": "topic", "value": "KI-Einführung"}
       - [Einstieg in die KI]{"entity": "topic", "value": "KI-Einführung"}
-
       - [Vertiefung einzelner Themenfelder der KI]{"entity": "topic", "value": "KI-Vertiefung"}
       - [Vertiefung einzelner Themenfelder]{"entity": "topic", "value": "KI-Vertiefung"}
       - [Vertiefung Themenfelder]{"entity": "topic", "value": "KI-Vertiefung"}
       - [Vertiefung KI]{"entity": "topic", "value": "KI-Vertiefung"}
-
       - [KI in Berufsfeldern]{"entity": "topic", "value": "KI-Berufsfelder"}
       - [KI Berufsfelder]{"entity": "topic", "value": "KI-Berufsfelder"}
       - [KI Beruf]{"entity": "topic", "value": "KI-Berufsfelder"}
-
       - [KI und Gesellschaft]{"entity": "topic", "value": "KI-Gesellschaft"}
       - [KI Gesellschaft]{"entity": "topic", "value": "KI-Gesellschaft"}
-      
       - [Data Science]{"entity": "topic", "value": "Data Science"}
-
       - [Maschinelles Lernen]{"entity": "topic", "value": "Maschinelles Lernen"}
       - [ML]{"entity": "topic", "value": "Maschinelles Lernen"}
       - [machine learning]{"entity": "topic", "value": "Maschinelles Lernen"}
-
       - [Einführung R]{"entity": "topic", "value": "Statistik"}
       - [Statistik]{"entity": "topic", "value": "Statistik"}
       - [statistische Methoden]{"entity": "topic", "value": "Statistik"}
       - [R Programmierung]{"entity": "topic", "value": "Statistik"}
-
       - [zehn]{"entity": "max_duration", "value": "10"} h
       - [zehn]{"entity": "max_duration", "value": "10"} Stunden
       - [10]{"entity": "max_duration", "value": "10"}  h
@@ -486,7 +454,6 @@ nlu:
       - [mehr als fünfzig]{"entity": "max_duration", "value": "51"}
       - [51]{"entity": "max_duration", "value": "51"} h
       - [51]{"entity": "max_duration", "value": "51"} Stunden 
-
       - [Leistungsnachweis]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [mit Note]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [benotete Teilnahme]{"entity": "certificate", "value": "Leistungsnachweis"}

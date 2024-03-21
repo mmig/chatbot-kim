@@ -2,6 +2,11 @@ version: '3.1'
 
 stories:
 
+- story: User greet
+  steps:
+  - intent: greet
+  - action: utter_greet
+
 - story: User goodbye
   steps:
    - intent: goodbye
@@ -12,10 +17,4 @@ stories:
    - intent: thank
    - action: utter_you_are_welcome
    - action: utter_anything_else
-
-# # added by DFKI
-- story: User greets login
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - action: utter_tip_formulation
+   

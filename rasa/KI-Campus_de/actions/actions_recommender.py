@@ -438,7 +438,11 @@ class ActionAskLanguage(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_language)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -482,7 +486,11 @@ class ActionAskTopic(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_topic)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -518,7 +526,11 @@ class ActionAskLevel(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_level)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -554,7 +566,11 @@ class ActionAskMaxDuration(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_duration)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -589,8 +605,12 @@ class ActionAskCertificate(Action):
 			text = get_response(self.responses, self.Responses.confirm_and_show_change_certificate)
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_certificate)
+		
+		custom_buttons = {
+                "buttons": buttons
+        }
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 ###################################
@@ -637,23 +657,14 @@ class ActionRecommenderOrSearchTopics(Action):
 			buttons =[
 				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
 				{'title': get_response(self.responses, self.Responses.search_topics_option_unspecified), 'payload': '/search_topics'},
-			
-
-			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
-			#	{"payload": "/search_topics", "title": "allgemeine Themensuche"}
 			]
-			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?"
 			text = get_response(self.responses, self.Responses.recommender_or_search_topics_unspecified)
 		else:
 			search_topic = str(search_topic).capitalize()
 			buttons = [
 				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
 				{'title': get_response(self.responses, self.Responses.search_topics_option).format(search_topic), 'payload': '/search_topics'},
-				
-			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
-			#	{"payload": "/search_topics", "title": "Kursangebot zum Thema {search_topic}"}
 			]
-			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {search_topic} sehen?"
 			text = get_response(self.responses, self.Responses.recommender_or_search_topics).format(search_topic)
 		
 		dispatcher.utter_message(text=text, buttons=buttons)
@@ -787,3 +798,95 @@ class ValidateRecommenderForm(FormValidationAction):
 			return {"level": slot_value.lower()}
 		else:
 			return {"level": None}
+		
+		
+##########################
+# CUSTOM FALLBACK
+##########################
+
+class ActionFallbackButtons(Action):
+	class Responses(ResponseEnum):
+		fallback_message = auto()
+		fallback_button_start_recommender_form = auto()
+		fallback_button_get_courses = auto()
+		fallback_button_greet = auto()
+		fallback_button_goodbye = auto()
+		fallback_button_thank = auto()
+		fallback_button_undecided = auto()
+		fallback_button_restart = auto()
+		fallback_button_stop_form = auto()
+		fallback_button_additional_learning_recommendation = auto()
+		fallback_button_change_language_slot = auto()
+		fallback_button_change_topic_slot = auto()
+		fallback_button_change_level_slot = auto()
+		fallback_button_change_max_duration_slot = auto()
+		fallback_button_change_certificate_slot = auto()
+		fallback_button_deny = auto()
+		fallback_button_affirm = auto()
+		fallback_button_get_achievements = auto()
+		fallback_button_help = auto()
+		fallback_button_bot_challenge = auto()
+		fallback_button_human_handoff = auto()
+		fallback_button_search_topics = auto()
+		fallback_button_ask_question = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name(), ActionResponsesFiles.actions_recommender)
+		assert_responses_exist(self.responses, self.Responses)
+
+	def name(self):
+		return 'action_fallback_buttons'
+
+	def run(self, dispatcher: CollectingDispatcher,
+			tracker: Tracker,
+			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		
+        # select the top two intents from the tracker        
+        # ignore the first one - nlu fallback
+		predicted_intents = tracker.latest_message["intent_ranking"][1:4]
+		text = get_response(self.responses, self.Responses.fallback_message)
+
+		# mapping between intents and button text
+		intent_mappings = {
+			"greet": get_response(self.responses, self.Responses.fallback_button_greet),
+			"goodbye": get_response(self.responses, self.Responses.fallback_button_goodbye),
+			"thank": get_response(self.responses, self.Responses.fallback_button_thank),
+			"undecided": get_response(self.responses, self.Responses.fallback_button_undecided),
+			"restart": get_response(self.responses, self.Responses.fallback_button_restart),
+			"stop_form": get_response(self.responses, self.Responses.fallback_button_stop_form),
+			"additional_learning_recommendation": get_response(self.responses, self.Responses.fallback_button_additional_learning_recommendation),
+			"change_language_slot": get_response(self.responses, self.Responses.fallback_button_change_language_slot),
+			"change_topic_slot": get_response(self.responses, self.Responses.fallback_button_change_topic_slot),
+			"change_level_slot": get_response(self.responses, self.Responses.fallback_button_change_level_slot),
+			"change_max_duration_slot": get_response(self.responses, self.Responses.fallback_button_change_max_duration_slot),
+			"change_certificate_slot": get_response(self.responses, self.Responses.fallback_button_change_certificate_slot),
+			"deny": get_response(self.responses, self.Responses.fallback_button_deny),
+			"affirm": get_response(self.responses, self.Responses.fallback_button_affirm),
+			"get_achievements": get_response(self.responses, self.Responses.fallback_button_get_achievements),
+			"help": get_response(self.responses, self.Responses.fallback_button_help),
+			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
+			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
+			}
+
+		buttons = [	
+			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}]
+		
+		for intent in predicted_intents:
+			if intent['name'] not in intent_mappings:
+					continue
+			
+			button_title = "{}".format(intent_mappings[intent['name']])
+			button_payload = "/{}".format(intent['name'])
+			buttons.append({"title": button_title, "payload": button_payload})
+
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
+		return []
